@@ -1,8 +1,12 @@
 const FILES_TO_CACHE = [
-    '/offline.html'
-
-
-
+    "/",
+    "/index.html",
+    "/icons/icon-192x192.png",
+    "/icons/icon-512x512.png",
+    "/manifest.webmanifest",
+    "/index.js",
+    "db.js",
+    "/styles.css"
 ];
 
 const CACHE_NAME = 'static-cache-v2';
@@ -13,7 +17,7 @@ self.addEventListener("install", function (evt) {
 // pre cache all static assets
     evt.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            console.log('files pre-cached successfully!');
+            console.log("files pre-cached successfully!");
             return cache.addAll(FILES_TO_CACHE);
         })
     );
@@ -35,7 +39,7 @@ self.addEventListener("activate", function(evt) {
             );
         })
     );
-    self.ClientRectList.claim();
+    self.clients.claim();
 });
 
 // fetch
